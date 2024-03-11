@@ -17,7 +17,7 @@ export const uploadFile = async (req, res) => {
     let fileUrl = "";
 
     if (req.file) {
-      fileUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+      fileUrl = `https://stack-ovelflow-clone.onrender.com/uploads/${req.file.filename}`;
     }
 
     const newUpload = new Upload({ text, file: fileUrl, userPosted, userId });
