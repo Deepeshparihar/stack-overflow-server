@@ -4,7 +4,6 @@ import Questions from "../models/Questions.js";
 export const postAnswer = async (req, res) => {
   const { id: _id } = req.params;
   const { noOfAnswers, answerBody, userAnswered, userId } = req.body;
-  console.log(req.body);
 
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(404).send("question unavilable...");
@@ -40,14 +39,14 @@ export const deleteAnswer = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(answerId)) {
     return res.status(404).send("Answer unavilable...");
   }
-  updateNoOfQuestions( _id, noOfAnswers)
+  updateNoOfQuestions(_id, noOfAnswers);
   try {
     await Questions.updateOne(
-        { _id},
-        { $pull: {'answer': { _id: answerId}}}
-    )
-    res.status(200).json({message: 'Successfully deleted...'})
+      { _id },
+      { $pull: { answer: { _id: answerId } } }
+    );
+    res.status(200).json({ message: "Successfully deleted..." });
   } catch (error) {
-    res.status(405).json(error)
+    res.status(405).json(error);
   }
 };

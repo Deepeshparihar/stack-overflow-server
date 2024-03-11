@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import User from "../models/auth.js";
+import crypto from "crypto";
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -34,8 +35,9 @@ export const updateProfile = async (req, res) => {
       { $set: { name: name, about: about, tags: tags } },
       { new: true }
     );
-    res.status(200).json(updatedProfile)
+    res.status(200).json(updatedProfile);
   } catch (error) {
-    res.status(405).json({message: error.message})
+    res.status(405).json({ message: error.message });
   }
 };
+
