@@ -52,7 +52,7 @@ export const paymentverification = async (req, res) => {
       });
       await newMember.save();
       res.redirect(
-        "http://localhost:3000/Subscription?message=Payment%20successful"
+        "https://stackoverflow-bydeepesh.netlify.app/Subscription?message=Payment%20successful"
       );
     } catch (error) {
       console.error("Error updating payment details:", error);
@@ -60,6 +60,8 @@ export const paymentverification = async (req, res) => {
     }
   } else {
     console.error("Payment failed:", order_id);
-    res.redirect("http://localhost:3000/Subscription?message=Payment%20failed");
+    res.redirect(
+      "https://stackoverflow-bydeepesh.netlify.app/Subscription?message=Payment%20failed"
+    );
   }
 };
