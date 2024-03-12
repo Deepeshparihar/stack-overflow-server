@@ -1,21 +1,12 @@
 import express from "express";
 import { getUploads, uploadFile } from "../controllers/Cards.js";
 import multer from "multer";
+import { getStorage } from "firebase/storage";
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-router.use('/uploads', express.static('uploads'));
-
-const upload = multer({ storage });
+const storage = getStorage();
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.get("/uploads", getUploads);
 router.post("/upload", upload.single("file"), uploadFile);
