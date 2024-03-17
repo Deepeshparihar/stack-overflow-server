@@ -9,9 +9,9 @@ const instance = new Razorpay({
 
 export const initiatePayment = async (req, res) => {
   try {
-    const amount = req.body.amount;
+    const adjustedAmount = req.body.adjustedAmount;
     const order = await instance.orders.create({
-      amount: Number(amount * 100),
+      amount: Number(adjustedAmount * 100),
       currency: "INR",
       receipt: "receipt#1",
       payment_capture: 1,

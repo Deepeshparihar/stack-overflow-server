@@ -31,6 +31,6 @@ const paymentschema = new mongoose.Schema({
   },
 });
 
-paymentschema.index({ planDate: 1 }, { expireAfterSeconds: 30 * 24 * 60 * 60 });
+paymentschema.index({ planDate: 1 }, { expireAfterSeconds: 2592000 });
 
 export default mongoose.model("Payment", paymentschema);
